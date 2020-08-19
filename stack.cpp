@@ -3,27 +3,27 @@
 using namespace std;
 
 
-Stack::Stack(int size) {
-    stackArray = new int[size];
-    stackSize = size;
+Stack::Stack(int s) {
+    myArray = new int[s];
+    size = s;
     top = -1;
 
 }
 
 Stack::Stack(const Stack &obj){
-    if(obj.stackSize > 0)
-        stackArray = new int[obj.stackSize];
+    if(obj.size > 0)
+        myArray = new int[obj.size];
     else
-        stackArray = nullptr;
+        myArray = nullptr;
     
-    stackSize = obj.stackSize;
+    size = obj.size;
 
-    for(int count = 0; count < stackSize; count++)
-        stackArray[count] = obj.stackArray[count];
+    for(int count = 0; count < size; count++)
+        myArray[count] = obj.myArray[count];
 }
 
 Stack::~Stack() {
-    delete [] stackArray;
+    delete [] myArray;
 }
 
 void Stack::push(int num) {
@@ -32,7 +32,7 @@ void Stack::push(int num) {
     }
     else {
         top++;
-        stackArray[top] = num;
+        myArray[top] = num;
     }
 }
 
@@ -40,7 +40,7 @@ void Stack::pop(int &num) {
     if(isEmpty()) {
         cout << "the stack is empty. \n";
     }else {
-        num = stackArray[top];
+        num = myArray[top];
         top--;
     }
 }
@@ -48,7 +48,7 @@ void Stack::pop(int &num) {
 bool Stack::isFull() const {
     bool status;
 
-    if (top == stackSize - 1)
+    if (top == size - 1)
         status = true;
     else 
         status = false;
